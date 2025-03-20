@@ -77,40 +77,40 @@ or
 
 ### Creating SQL Server
 
-'''
+```
 RESOURCE_GROUP="wpm"
 SQL_SERVER="iyowpmsqlserver"
 SQL_ADMIN="sqladmin"
 SQL_PASSWORD="<your-password>"
 DATABASE_NAME="wpm"
 LOCATION="eastus"  # Change to your preferred region
-'''
+```
 
-'''
+```
 az sql server create \
   --name $SQL_SERVER \
   --resource-group $RESOURCE_GROUP \
   --location $LOCATION \
   --admin-user $SQL_ADMIN \
   --admin-password $SQL_PASSWORD
-'''
+```
 
-'''
+```
 az sql db create \
   --resource-group $RESOURCE_GROUP \
   --server $SQL_SERVER \
   --name $DATABASE_NAME \
   --service-objective S0  # Change the SKU if needed
-'''
+```
 
-'''
+```
 az sql server firewall-rule create \
   --resource-group $RESOURCE_GROUP \
   --server $SQL_SERVER \
   --name AllowMyIP \
   --start-ip-address 0.0.0.0 \
   --end-ip-address 255.255.255.255
-'''
+```
 
 ### To delete all the resources in the Resource Group
 
