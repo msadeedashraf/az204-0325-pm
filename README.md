@@ -75,6 +75,12 @@ or
 
 ### AZURE CLI
 
+### List all the resource
+
+```
+az resource list
+```
+
 ### Creating SQL Server
 
 ```
@@ -84,6 +90,10 @@ SQL_ADMIN="sqladmin"
 SQL_PASSWORD="<your-password>"
 DATABASE_NAME="wpm"
 LOCATION="eastus"  # Change to your preferred region
+```
+
+```
+az group create --name $RESOURCE_GROUP --location $LOCATION
 ```
 
 ```
@@ -164,3 +174,8 @@ az vm delete --name myVM --resource-group wpm --yes
 sh
 az storage account delete --name mystorageaccount --resource-group wpm --yes
 ```
+
+### Downloading the Azure Storage Explorer
+[Download](https://azure.microsoft.com/en-us/products/storage/storage-explorer#Download-4)
+
+
