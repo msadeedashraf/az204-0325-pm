@@ -81,7 +81,22 @@ or
 az resource list
 ```
 
-### Creating SQL Server
+## Creating SQL Server
+
+### Set environment variables
+
+```
+# Set environment variables
+$env:RESOURCE_GROUP = "samrg"
+$env:SQL_SERVER = "samk-sql-server"
+$env:SQL_ADMIN = "sqladmin"
+$env:SQL_PASSWORD = "<your-password>"
+$env:DATABASE_NAME = "jobziladb"
+$env:LOCATION = "centralus"
+
+```
+
+or
 
 ```
 RESOURCE_GROUP="wpm"
@@ -91,6 +106,8 @@ SQL_PASSWORD="<your-password>"
 DATABASE_NAME="wpm"
 LOCATION="eastus"  # Change to your preferred region
 ```
+
+
 
 ```
 az group create --name $RESOURCE_GROUP --location $LOCATION
