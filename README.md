@@ -167,13 +167,14 @@ az sql db create \
 
 ### Create a firewall rule to allow access
 
+
 ```
 az sql server firewall-rule create `
   --resource-group $env:RESOURCE_GROUP `
   --server $env:SQL_SERVER `
   --name AllowMyIP `
-  --start-ip-address 0.0.0.0 ` # to pickup the ip address you can type my ip address in the google search
-  --end-ip-address 255.255.255.255 # has to be same if no range is available 
+  --start-ip-address 24.114.81.124 `
+  --end-ip-address 24.114.81.124
 
 ```
 
