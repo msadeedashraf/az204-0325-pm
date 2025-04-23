@@ -159,6 +159,9 @@ You are building an online learning platform that needs to scale based on usage.
 
 ## 🛠️ Step-by-Step Guide for Case Study 1: Web App + Azure SQL + Blob Storage
 
+<details>
+  <summary>🔑 Click to see the solution</summary>
+
 **Assumptions:**
 - You have access to the Azure Student Portal with required permissions to create resources.
 - You are familiar with basic .NET development and Visual Studio or VS Code.
@@ -175,9 +178,14 @@ You are building an online learning platform that needs to scale based on usage.
 9. Save the Blob URI in your SQL DB with user profile details.
 10. Enable **Application Insights** from the App Service panel for monitoring.
 
+</details>
+
 ---
 
 ## 🛠️ Step-by-Step Guide for Case Study 2: Azure Functions + Queue + Blob
+
+<details>
+  <summary>🔑 Click to see the solution</summary>
 
 **Assumptions:**
 - You have basic knowledge of Azure Functions and Azure Storage.
@@ -194,9 +202,14 @@ You are building an online learning platform that needs to scale based on usage.
 8. Upload an image to `original-images`, and push a message to `resize-queue`.
 9. Enable **Application Insights** for logging and diagnostics.
 
+</details>
+
 ---
 
 ## 🛠️ Step-by-Step Guide for Case Study 3: VM + SQL MI + Storage
+
+<details>
+  <summary>🔑 Click to see the solution</summary>
 
 **Assumptions:**
 - You are familiar with Windows Server and basic networking.
@@ -212,9 +225,14 @@ You are building an online learning platform that needs to scale based on usage.
 7. Configure the VM to use private endpoints or VNet to access SQL MI securely.
 8. Use **Azure Monitor** to collect logs and monitor the VM.
 
+</details>
+
 ---
 
 ## 🛠️ Step-by-Step Guide for Case Study 4: Azure Functions + Key Vault
+
+<details>
+  <summary>🔑 Click to see the solution</summary>
 
 **Assumptions:**
 - You know how to work with Azure Functions and HTTP triggers.
@@ -229,9 +247,14 @@ You are building an online learning platform that needs to scale based on usage.
 6. Implement payment processing logic using the secret.
 7. Enable **Application Insights** for error tracking and performance.
 
+</details>
+
 ---
 
 ## 🛠️ Step-by-Step Guide for Case Study 5: Scalable Web App + Monitor
+
+<details>
+  <summary>🔑 Click to see the solution</summary>
 
 **Assumptions:**
 - You are deploying a scalable web platform.
@@ -245,5 +268,7 @@ You are building an online learning platform that needs to scale based on usage.
 5. Create a **Dashboard** in Azure Monitor for real-time viewing.
 6. Enable **Diagnostic Logs** from App Service settings for troubleshooting.
 7. Add **Alerts** (e.g., high response time or CPU) for proactive notifications.
+
+</details>
 
 ---
