@@ -225,6 +225,29 @@ You are building an online learning platform that needs to scale based on usage.
 7. Configure the VM to use private endpoints or VNet to access SQL MI securely.
 8. Use **Azure Monitor** to collect logs and monitor the VM.
 
+## 🧰 Azure CLI Commands for Case Study 1: Web App + SQL + Blob
+
+```bash
+# Create Resource Group
+az group create --name AZ204RG --location eastus
+
+# Create App Service Plan and Web App
+az appservice plan create --name AZ204Plan --resource-group AZ204RG --sku B1
+az webapp create --name az204webapp12345 --plan AZ204Plan --resource-group AZ204RG --runtime "DOTNET|6.0"
+
+# Create Azure SQL Server and Database
+az sql server create --name az204sqlserver12345 --resource-group AZ204RG --location eastus --admin-user azadmin --admin-password P@ssword1234
+az sql db create --name az204sqldb --server az204sqlserver12345 --resource-group AZ204RG --service-objective S0
+
+# Allow Azure services access to SQL
+az sql server firewall-rule create --resource-group AZ204RG --server az204sqlserver12345 --name AllowAzure --start-ip-address 0.0.0.0 --end-ip-address 0.0.0.0
+
+# Create Storage Account and Blob container
+az storage account create --name az204storageacct --resource-group AZ204RG --location eastus --sku Standard_LRS
+az storage container create --name profilepics --account-name az204storageacct --auth-mode login
+```
+
+
 </details>
 
 ---
@@ -270,5 +293,81 @@ You are building an online learning platform that needs to scale based on usage.
 7. Add **Alerts** (e.g., high response time or CPU) for proactive notifications.
 
 </details>
+
+---
+
+
+---
+
+
+---
+
+## 🧰 Azure CLI Commands for Case Study 2: Functions + Queue + Blob
+
+```bash
+# Create Storage Account
+az storage account create --name az204funcstorage --resource-group AZ204RG --location eastus --sku Standard_LRS
+
+# Create containers and queue
+az storage container create --name original-images --account-name az204funcstorage --auth-mode login
+az storage container create --name resized-images --account-name az204funcstorage --auth-mode login
+az storage queue create --name resize-queue --account-name az204funcstorage
+
+# Create Function App
+az functionapp create --resource-group AZ204RG --consumption-plan-location eastus --runtime dotnet --functions-version 4 --name az204funcapp123 --storage-account az204funcstorage
+```
+
+---
+
+## 🧰 Azure CLI Commands for Case Study 3: VM + SQL MI + Storage
+
+```bash
+# Create Windows VM
+az vm create --resource-group AZ204RG --name AZ204LegacyVM --image Win2019Datacenter --admin-username azureuser --admin-password P@ssword1234 --size Standard_B2s
+
+# Open port 80 for IIS
+az vm open-port --port 80 --resource-group AZ204RG --name AZ204LegacyVM
+
+# Create Blob storage for backup
+az storage account create --name az204vmstorage --resource-group AZ204RG --location eastus --sku Standard_LRS
+```
+
+---
+
+## 🧰 Azure CLI Commands for Case Study 4: Azure Function + Key Vault
+
+```bash
+# Create Key Vault and add secret
+az keyvault create --name az204keyvault --resource-group AZ204RG --location eastus
+az keyvault secret set --vault-name az204keyvault --name PaymentAPIKey --value "your-api-key-value"
+
+# Create Function App
+az functionapp create --resource-group AZ204RG --consumption-plan-location eastus --runtime dotnet --functions-version 4 --name az204securefunc --storage-account az204funcstorage
+
+# Assign managed identity and set policy
+az functionapp identity assign --name az204securefunc --resource-group AZ204RG
+identity=$(az functionapp identity show --name az204securefunc --resource-group AZ204RG --query principalId -o tsv)
+az keyvault set-policy --name az204keyvault --object-id $identity --secret-permissions get list
+```
+
+---
+
+## 🧰 Azure CLI Commands for Case Study 5: Scalable Web App + Monitor
+
+```bash
+# Create App Service Plan with scaling
+az appservice plan create --name AZ204ScalePlan --resource-group AZ204RG --sku S1 --is-linux false
+
+# Create Web App
+az webapp create --name az204scaleapp --plan AZ204ScalePlan --resource-group AZ204RG --runtime "DOTNET|6.0"
+
+# Configure autoscale
+az monitor autoscale create --resource-group AZ204RG --resource az204scaleapp --resource-type Microsoft.Web/sites --name autoscale-rule
+az monitor autoscale rule create --resource-group AZ204RG --autoscale-name autoscale-rule --condition "CpuPercentage > 70 avg 5m" --scale out 1
+az monitor autoscale rule create --resource-group AZ204RG --autoscale-name autoscale-rule --condition "CpuPercentage < 30 avg 5m" --scale in 1
+
+# Enable diagnostics
+az monitor diagnostic-settings create --resource az204scaleapp --resource-group AZ204RG --name diagnostics --workspace <LogAnalyticsWorkspaceId> --logs '[{"category": "AppServiceHTTPLogs", "enabled": true}]'
+```
 
 ---
