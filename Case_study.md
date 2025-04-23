@@ -225,6 +225,9 @@ You are building an online learning platform that needs to scale based on usage.
 7. Configure the VM to use private endpoints or VNet to access SQL MI securely.
 8. Use **Azure Monitor** to collect logs and monitor the VM.
 
+
+---
+
 ## 🧰 Azure CLI Commands for Case Study 1: Web App + SQL + Blob
 
 ```bash
@@ -246,6 +249,9 @@ az sql server firewall-rule create --resource-group AZ204RG --server az204sqlser
 az storage account create --name az204storageacct --resource-group AZ204RG --location eastus --sku Standard_LRS
 az storage container create --name profilepics --account-name az204storageacct --auth-mode login
 ```
+
+---
+
 
 
 </details>
